@@ -20,7 +20,7 @@ class _LoginPageState extends State<LoginPage> {
   Color left = Colors.black;
   Color right = Colors.white;
 
-  final minHeight = 775.0;
+  final minHeight = 780.0;
 
   @override
   Widget build(BuildContext context) {

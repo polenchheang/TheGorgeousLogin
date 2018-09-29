@@ -1,0 +1,13 @@
+{
+  "appTitle" : "Cam Tour",
+  "logInButton" : "Log In",
+  "emailHint" : "Email Address",
+  "passwordHint" : "Password",
+  "forgetPasswordLabel" : "Forget Password?",
+  "orLabel" : "Or",
+  "nameLabel" : "Name",
+  "confirmLabel" : "Confirmation",
+  "signUpButton" : "SIGN UP",
+  "existingLabel" : "Existing",
+  "newLabel" : "New"
+}

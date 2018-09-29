@@ -1,0 +1,13 @@
+{
+  "appTitle" : "ខ្មែរតួរ",
+  "logInButton": "ចូល",
+  "emailHint" : "អុីម៉ែល",
+  "passwordHint" : "ពាក្សសំងាត់",
+  "forgetPasswordLabel" : "តើអ្នកភ្លេចពាក្សសំងាត់ឬ?",
+  "orLabel" : "រឺក៏",
+  "nameLabel" : "ឈ្មោះ",
+  "confirmLabel" : "បញ្ជូលពាក្សសំងាត់ម្តងទៀត",
+  "signUpButton" : "ចុះបញ្ចីរ",
+  "existingLabel" : "បានចុះបញ្ចីរ",
+  "newLabel" : "ចុះបញ្ចីរថ្មី"
+}

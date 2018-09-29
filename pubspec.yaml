@@ -9,6 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
 
   cupertino_icons: ^0.1.2
 
@@ -24,6 +26,8 @@ flutter:
 
   assets:
       - assets/login_logo.png
+      - lib/resources/lang/km.json
+      - lib/resources/lang/en.json
 
   fonts:
     - family: WorkSansSemiBold

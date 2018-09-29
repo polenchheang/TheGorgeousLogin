@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:the_gorgeous_login/utils/bubble_indication_painter.dart';
+import 'package:the_gorgeous_login/utils/localize/Localize.dart';
 
 class SwapBar extends StatefulWidget {
   final pageController;
@@ -13,8 +14,12 @@ class SwapBar extends StatefulWidget {
 }
 
 class _SwapBarState extends State<SwapBar> {
+  Localize _localize;
+
   @override
   Widget build(BuildContext context) {
+    _localize = Localize.of(context);
+
     return Container(
       width: 300.0,
       height: 50.0,
@@ -28,11 +33,11 @@ class _SwapBarState extends State<SwapBar> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             _buildButton(
-                label: "Existing",
+                label: _localize.trans("existingLabel"),
                 onPress: _onSignInButtonPress,
                 color: widget.leftColor),
             _buildButton(
-                label: "New",
+                label: _localize.trans("newLabel"),
                 onPress: _onSignUpButtonPress,
                 color: widget.rightColor),
           ],

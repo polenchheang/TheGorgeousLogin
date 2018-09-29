@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:the_gorgeous_login/app_lib.dart' as App;
 import 'package:the_gorgeous_login/ui/modules/authentication/widgets/Button.dart';
 import 'package:the_gorgeous_login/ui/modules/authentication/widgets/Utils.dart';
+import 'package:the_gorgeous_login/utils/localize/Localize.dart';
 
 class SignUp extends StatefulWidget {
   final Function onSubmit;
@@ -14,42 +15,48 @@ class SignUp extends StatefulWidget {
 }
 
 class SignUpState extends State<SignUp> {
+  Localize _localize;
+
   @override
-  Widget build(BuildContext context) => _signUpContainer(Column(
-        children: <Widget>[
-          App.TextField(
-              focusNode: myFocusNodeName,
-              controller: signUpNameController,
-              keyboardType: TextInputType.text,
-              textCapitalization: TextCapitalization.words,
-              iconData: FontAwesomeIcons.user,
-              hintText: "Name"),
-          Utils.separator,
-          App.TextField(
-              focusNode: myFocusNodeEmail,
-              controller: signUpEmailController,
-              keyboardType: TextInputType.emailAddress,
-              iconData: FontAwesomeIcons.envelope,
-              hintText: "Email Address"),
-          Utils.separator,
-          App.TextField(
-              focusNode: myFocusNodePassword,
-              controller: signUpPasswordController,
-              hintText: "Password",
-              iconData: _obscureLeadingIcon,
-              obscureText: _obscureTextSignUp,
-              suffixIcon: Utils.obscureTrailingIcon(onTap: _toggleSignUp)),
-          Utils.separator,
-          App.TextField(
-            controller: signUpConfirmPasswordController,
-            obscureText: _obscureTextSignUpConfirm,
-            hintText: "Confirmation",
-            suffixIcon: Utils.obscureTrailingIcon(onTap: _toggleSignUpConfirm),
+  Widget build(BuildContext context) {
+    _localize = Localize.of(context);
+
+    return _signUpContainer(Column(
+      children: <Widget>[
+        App.TextField(
+            focusNode: myFocusNodeName,
+            controller: signUpNameController,
+            keyboardType: TextInputType.text,
+            textCapitalization: TextCapitalization.words,
+            iconData: FontAwesomeIcons.user,
+            hintText: _localize.trans("nameLabel")),
+        Utils.separator,
+        App.TextField(
+            focusNode: myFocusNodeEmail,
+            controller: signUpEmailController,
+            keyboardType: TextInputType.emailAddress,
+            iconData: FontAwesomeIcons.envelope,
+            hintText: _localize.trans("emailHint")),
+        Utils.separator,
+        App.TextField(
+            focusNode: myFocusNodePassword,
+            controller: signUpPasswordController,
+            hintText: _localize.trans("passwordHint"),
             iconData: _obscureLeadingIcon,
-          ),
-          Button("SIGN UP", () => widget.onSubmit()),
-        ],
-      ));
+            obscureText: _obscureTextSignUp,
+            suffixIcon: Utils.obscureTrailingIcon(onTap: _toggleSignUp)),
+        Utils.separator,
+        App.TextField(
+          controller: signUpConfirmPasswordController,
+          obscureText: _obscureTextSignUpConfirm,
+          hintText: _localize.trans("confirmLabel"),
+          suffixIcon: Utils.obscureTrailingIcon(onTap: _toggleSignUpConfirm),
+          iconData: _obscureLeadingIcon,
+        ),
+        Button(_localize.trans("signUpButton"), () => widget.onSubmit()),
+      ],
+    ));
+  }
 
   final FocusNode myFocusNodePassword = FocusNode();
   final FocusNode myFocusNodeEmail = FocusNode();
@@ -84,7 +91,7 @@ class SignUpState extends State<SignUp> {
                     shape: Utils.cardShape,
                     child: Container(
                       width: 300.0,
-                      height: 405.0,
+                      height: 410.0,
                       child: signUpForm,
                     ),
                   ),

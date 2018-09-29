@@ -4,6 +4,7 @@ import 'package:the_gorgeous_login/app_lib.dart' as App;
 import 'package:the_gorgeous_login/ui/modules/authentication/singIn/SocialButton.dart';
 import 'package:the_gorgeous_login/ui/modules/authentication/widgets/Button.dart';
 import 'package:the_gorgeous_login/ui/modules/authentication/widgets/Utils.dart';
+import 'package:the_gorgeous_login/utils/localize/Localize.dart';
 
 class SignIn extends StatefulWidget {
   final Function onSubmit;
@@ -20,6 +21,8 @@ class _SignInState extends State<SignIn> {
   final FocusNode myFocusNodeEmailLogin = FocusNode();
   final FocusNode myFocusNodePasswordLogin = FocusNode();
 
+  Localize _localize;
+
   TextEditingController loginEmailController = new TextEditingController();
   TextEditingController loginPasswordController = new TextEditingController();
 
@@ -27,6 +30,8 @@ class _SignInState extends State<SignIn> {
 
   @override
   Widget build(BuildContext context) {
+    _localize = Localize.of(context);
+
     return _moduleContainer(Column(
       children: <Widget>[
         _loginContainer(Column(
@@ -34,7 +39,7 @@ class _SignInState extends State<SignIn> {
             App.TextField(
               focusNode: myFocusNodeEmailLogin,
               controller: loginEmailController,
-              hintText: "Email Address",
+              hintText: _localize.trans("emailHint"),
               iconData: FontAwesomeIcons.envelope,
               keyboardType: TextInputType.emailAddress,
             ),
@@ -42,14 +47,14 @@ class _SignInState extends State<SignIn> {
             App.TextField(
                 focusNode: myFocusNodePasswordLogin,
                 controller: loginPasswordController,
-                hintText: "Password",
+                hintText: _localize.trans("passwordHint"),
                 iconData: FontAwesomeIcons.lock,
                 obscureText: _obscureTextLogin,
                 suffixIcon: Utils.obscureTrailingIcon(onTap: _toggleLogin)),
-            Button("LOGIN", () => widget.onSubmit()),
+            Button(_localize.trans("logInButton"), () => widget.onSubmit()),
           ],
         )),
-        _forgetPassword,
+        _forgetPassword(),
         _orSeparator(),
         _socialsLogin(),
       ],
@@ -90,7 +95,7 @@ class _SignInState extends State<SignIn> {
             Padding(
               padding: EdgeInsets.only(left: 15.0, right: 15.0),
               child: Text(
-                "Or",
+                _localize.trans("orLabel"),
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 16.0,
@@ -132,19 +137,19 @@ class _SignInState extends State<SignIn> {
         ],
       );
 
-  final _forgetPassword = Padding(
-    padding: EdgeInsets.only(top: 10.0),
-    child: FlatButton(
-        onPressed: () {},
-        child: Text(
-          "Forgot Password?",
-          style: TextStyle(
-              decoration: TextDecoration.underline,
-              color: Colors.white,
-              fontSize: 16.0,
-              fontFamily: "WorkSansMedium"),
-        )),
-  );
+  _forgetPassword() => Padding(
+        padding: EdgeInsets.only(top: 10.0),
+        child: FlatButton(
+            onPressed: () {},
+            child: Text(
+              _localize.trans("forgetPasswordLabel"),
+              style: TextStyle(
+                  decoration: TextDecoration.underline,
+                  color: Colors.white,
+                  fontSize: 16.0,
+                  fontFamily: "WorkSansMedium"),
+            )),
+      );
 
   void _toggleLogin() {
     setState(() {
